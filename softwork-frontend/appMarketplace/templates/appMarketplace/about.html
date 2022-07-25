@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>About | SOFTWORK</title>
+    <link rel="stylesheet" href="../static/appMarketplace/css/style.css" type='text/css'>
+  </head>
+
+
+<body>
+  <header>
+    <div class="container">
+      <div id="branding">
+        <span class="highlight"><a href="/"><h1>SOFTWORK</h1></a></span>
+      </div>
+      <nav>
+        {% if name.is_authenticated and emp_user == True and free_user == False %}
+          <ul>
+            <li><a href="{% url 'scraper:aroundtheweb' %}">Around The Web</a></li>
+            <li><a href="{% url 'employee:e_home' %}">Browse Jobs</a></li>
+            <li><a href="{% url 'employee:add_job' %}">Post a Job</a></li>
+            <li><a href="{% url 'message:message' name.id %}">MESSAGES({{count_message_e}})</a></li>
+            <li><a href="{% url 'employee:profile' name.id %}">{{ name.username }}</a></li>
+            <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+          </ul>
+        {% elif name.is_authenticated and free_user == True and emp_user == False %}
+          <ul>
+            <li><a href="{% url 'scraper:aroundtheweb' %}">Around The Web</a></li>
+            <li><a href="{% url 'freelancer:f_home' %}">Browse Jobs</a></li>
+          <!--  <li><a href="{% url 'message:message' name.id %}">MESSAGES({{count_message_f}})</a></li>-->
+            <li><a href="{% url 'freelancer:profile' name.id %}">{{ name.username }}</a></li>
+            <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+          </ul>
+        {% else %}
+          <ul>
+            <li><a href="{% url 'scraper:aroundtheweb' %}">Around The Web</a></li>
+            <li><a href="{% url 'accounts:e_reg' %}">Hire Freelancer</a></li>
+            <li><a href="{% url 'accounts:f_reg' %}">Become A Freelancer</a></li>
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+          </ul>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <section id="aboutshowcase">
+    <div class="container">
+      <h1>About Us</h1>
+      <p>Creating a World Of Work Without Limits</p>
+    </div>
+  </section>
+
+
+  <section id="newsletter">
+    <div class="container">
+      <h1>Subscribe To Our Newsletter</h1>
+      <form>
+        <input type="email" placeholder="Enter Email...">
+        <button type="submit" class="button_1">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+
+  <section id="main">
+    <div class="container">
+      <article id="main-col">
+        <p>
+          <b>Softwork</b> is a decentralized peer-to-peer freelance system, in which clients and freelancers can conduct businesses and process numerous transactions for services using non-bounded smart contracts on Tron network by reputation and cash in escrow., it basically supports the use of either of these 2 crypto wallets, <b>‘Metamask’ and ‘Tronlink Wallet’</b>, 
+          which has to be connected before any transaction can take place.
+          Softwork was built to enable employers to hirer talented freelancers for quality services and transparent transactions between both parties. 
+          The platform is user-friendly and very interactive for easy communication.
+        </p>
+      </article>
+
+      <aside id="sidebar">
+        <div class="dark">
+          <h3>Our Online Economy</h3>
+          <p>
+            
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <a  style="text-decoration-line: none; color:white;" href="{% url 'appMarketplace:index' %}">Home</a> - <a style="text-decoration-line: none; color:white;" href="{% url 'appMarketplace:contact_us' %}">Contact Us</a>
+    <p>SOFTWORK.com, Copyright &copy; 2017</p>
+  </footer>
+
+</body>
+
+</html>
